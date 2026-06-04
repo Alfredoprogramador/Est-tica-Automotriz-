@@ -1,6 +1,6 @@
 # Estética Automotriz
 
-Software para gerenciar um negócio de higienização automotiva entre cliente e prestador de serviço, com foco em agendamento, controle operacional e relacionamento com o cliente.
+Software web para gerenciar um negócio de higienização automotiva entre cliente e prestador de serviço, com foco em agendamento, controle operacional e relacionamento com o cliente.
 
 ## Objetivo do software
 
@@ -16,3 +16,35 @@ Também apoiar o prestador na organização da operação, redução de falhas e
 - Histórico dos serviços realizados.
 - Notificações e lembretes para o cliente.
 - Relatórios de faturamento e produtividade.
+
+## Como testar no navegador
+
+Como a aplicação é estática, basta servir os arquivos do repositório em um servidor HTTP simples.
+
+### Opção com Python
+
+```bash
+cd /tmp/workspace/Alfredoprogramador/Est-tica-Automotriz-
+python3 -m http.server 8000
+```
+
+Depois acesse `http://localhost:8000`.
+
+## Estrutura da aplicação
+
+- `index.html`: interface principal da plataforma.
+- `styles.css`: estilos responsivos do painel.
+- `app.js`: regras da aplicação, persistência em `localStorage` e relatórios.
+
+## Fluxo de uso
+
+1. Cadastre clientes.
+2. Cadastre os veículos vinculados aos clientes.
+3. Registre agendamentos com data, horário, valor e observações.
+4. Crie ordens de serviço vinculadas ou avulsas.
+5. Atualize os status dos atendimentos.
+6. Acompanhe histórico, lembretes e relatórios no painel.
+
+## Publicação
+
+A aplicação pode ser publicada em qualquer hospedagem de arquivos estáticos, como GitHub Pages, Netlify, Vercel ou servidor web próprio.
