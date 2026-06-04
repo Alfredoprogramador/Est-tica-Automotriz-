@@ -24,7 +24,7 @@ Como a aplicação é estática, basta servir os arquivos do repositório em um 
 ### Opção com Python
 
 ```bash
-cd /tmp/workspace/Alfredoprogramador/Est-tica-Automotriz-
+cd Est-tica-Automotriz-
 python3 -m http.server 8000
 ```
 

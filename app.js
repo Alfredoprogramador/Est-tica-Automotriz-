@@ -679,8 +679,8 @@ function formatDateTime(date, time) {
 }
 
 function statusBadge(status) {
-  const slug = status.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-').toLowerCase();
-  return `<span class="badge ${slug}">${status}</span>`;
+  const statusClassName = status.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-').toLowerCase();
+  return `<span class="badge ${statusClassName}">${status}</span>`;
 }
 
 function currency(value) {
