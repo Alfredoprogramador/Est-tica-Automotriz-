@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Estética Automotriz</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Gestão para higienização automotiva</p>
+        <h1>Estética Automotriz</h1>
+        <p class="subtitle">
+          Organize clientes, veículos, agendamentos, ordens de serviço e acompanhe a operação em um único painel.
+        </p>
+      </div>
+      <div class="hero-actions">
+        <button id="seed-data" type="button">Carregar dados de demonstração</button>
+        <button id="clear-data" type="button" class="secondary">Limpar dados</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="dashboard grid-4" id="dashboard-cards"></section>
+
+      <section class="layout two-columns">
+        <article class="panel">
+          <div class="panel-header">
+            <h2>Cadastro de clientes</h2>
+          </div>
+          <form id="client-form" class="form-grid">
+            <input type="hidden" name="id" />
+            <label>
+              Nome
+              <input name="name" type="text" placeholder="Nome do cliente" required />
+            </label>
+            <label>
+              Telefone
+              <input name="phone" type="tel" placeholder="(00) 00000-0000" required />
+            </label>
+            <label>
+              E-mail
+              <input name="email" type="email" placeholder="cliente@email.com" required />
+            </label>
+            <div class="form-actions full-width">
+              <button type="submit">Salvar cliente</button>
+              <button type="reset" class="secondary">Limpar</button>
+            </div>
+          </form>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Cliente</th>
+                  <th>Contato</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody id="clients-table"></tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-header">
+            <h2>Cadastro de veículos</h2>
+          </div>
+          <form id="vehicle-form" class="form-grid">
+            <input type="hidden" name="id" />
+            <label>
+              Cliente
+              <select name="clientId" id="vehicle-client" required></select>
+            </label>
+            <label>
+              Modelo
+              <input name="model" type="text" placeholder="Ex.: Onix" required />
+            </label>
+            <label>
+              Placa
+              <input name="plate" type="text" placeholder="ABC-1234" required />
+            </label>
+            <label>
+              Cor
+              <input name="color" type="text" placeholder="Preto" required />
+            </label>
+            <div class="form-actions full-width">
+              <button type="submit">Salvar veículo</button>
+              <button type="reset" class="secondary">Limpar</button>
+            </div>
+          </form>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Veículo</th>
+                  <th>Cliente</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody id="vehicles-table"></tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <section class="layout two-columns">
+        <article class="panel">
+          <div class="panel-header">
+            <h2>Agendamento online</h2>
+          </div>
+          <form id="schedule-form" class="form-grid">
+            <input type="hidden" name="id" />
+            <label>
+              Cliente
+              <select name="clientId" id="schedule-client" required></select>
+            </label>
+            <label>
+              Veículo
+              <select name="vehicleId" id="schedule-vehicle" required></select>
+            </label>
+            <label>
+              Serviço
+              <input name="serviceType" type="text" placeholder="Lavagem técnica" required />
+            </label>
+            <label>
+              Data
+              <input name="date" type="date" required />
+            </label>
+            <label>
+              Horário
+              <input name="time" type="time" required />
+            </label>
+            <label>
+              Valor (R$)
+              <input name="price" type="number" min="0" step="0.01" required />
+            </label>
+            <label class="full-width">
+              Observações
+              <textarea name="notes" rows="3" placeholder="Detalhes do atendimento"></textarea>
+            </label>
+            <div class="form-actions full-width">
+              <button type="submit">Salvar agendamento</button>
+              <button type="reset" class="secondary">Limpar</button>
+            </div>
+          </form>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Serviço</th>
+                  <th>Data</th>
+                  <th>Status</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody id="schedules-table"></tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-header">
+            <h2>Ordem de serviço</h2>
+          </div>
+          <form id="order-form" class="form-grid">
+            <input type="hidden" name="id" />
+            <label>
+              Agendamento
+              <select name="scheduleId" id="order-schedule"></select>
+            </label>
+            <label>
+              Cliente
+              <select name="clientId" id="order-client" required></select>
+            </label>
+            <label>
+              Veículo
+              <select name="vehicleId" id="order-vehicle" required></select>
+            </label>
+            <label class="full-width">
+              Descrição do serviço
+              <textarea name="description" rows="3" placeholder="Descreva o que será feito" required></textarea>
+            </label>
+            <label>
+              Valor (R$)
+              <input name="price" type="number" min="0" step="0.01" required />
+            </label>
+            <label>
+              Responsável
+              <input name="technician" type="text" placeholder="Nome do prestador" required />
+            </label>
+            <div class="form-actions full-width">
+              <button type="submit">Salvar ordem</button>
+              <button type="reset" class="secondary">Limpar</button>
+            </div>
+          </form>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Ordem</th>
+                  <th>Responsável</th>
+                  <th>Status</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody id="orders-table"></tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <section class="layout two-columns">
+        <article class="panel">
+          <div class="panel-header">
+            <h2>Notificações e lembretes</h2>
+          </div>
+          <ul id="notifications-list" class="stack-list"></ul>
+        </article>
+
+        <article class="panel">
+          <div class="panel-header">
+            <h2>Histórico dos serviços</h2>
+          </div>
+          <ul id="history-list" class="stack-list"></ul>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Relatórios operacionais</h2>
+        </div>
+        <div id="reports-grid" class="grid-3"></div>
+      </section>
+    </main>
+
+    <template id="empty-state-template">
+      <li class="empty-state">Nenhum registro disponível.</li>
+    </template>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
