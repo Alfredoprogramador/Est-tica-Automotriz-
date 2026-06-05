@@ -259,6 +259,21 @@ th {
   color: var(--danger);
 }
 
+.badge.pendente {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.badge.pago {
+  background: #dcfce7;
+  color: var(--success);
+}
+
+.badge.estornado {
+  background: #fef2f2;
+  color: var(--danger);
+}
+
 .muted {
   color: var(--muted);
   font-size: 0.9rem;

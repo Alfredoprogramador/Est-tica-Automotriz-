@@ -10,6 +10,7 @@ Também apoiar o prestador na organização da operação, redução de falhas e
 ## Funcionalidades principais
 
 - Cadastro de clientes e veículos.
+- Cadastro de serviços e controle de pagamentos.
 - Agendamento online de serviços.
 - Criação de ordem de serviço com descrição do que será feito.
 - Controle de status: agendado, em andamento, concluído e cancelado.
@@ -17,24 +18,42 @@ Também apoiar o prestador na organização da operação, redução de falhas e
 - Notificações e lembretes para o cliente.
 - Relatórios de faturamento e produtividade.
 
-## Como testar no navegador
+## Como executar com servidor e banco de dados
 
-Como a aplicação é estática, basta servir os arquivos do repositório em um servidor HTTP simples.
+Este projeto usa:
 
-### Opção com Python
+- Servidor `Node.js` com `Express`.
+- Banco de dados `SQLite` para persistir o estado da aplicação.
+
+### 1. Instalar dependências
 
 ```bash
 cd Est-tica-Automotriz-
-python3 -m http.server 8000
+npm install
 ```
 
-Depois acesse `http://localhost:8000`.
+### 2. Iniciar servidor
+
+```bash
+npm start
+```
+
+Depois acesse `http://localhost:3000`.
+
+### Endpoints principais
+
+- `GET /api/health`: status do servidor e caminho do banco.
+- `GET /api/state`: carrega estado salvo.
+- `PUT /api/state`: salva estado completo da aplicação.
 
 ## Estrutura da aplicação
 
 - `index.html`: interface principal da plataforma.
 - `styles.css`: estilos responsivos do painel.
-- `app.js`: regras da aplicação, persistência em `localStorage` e relatórios.
+- `app.js`: regras da aplicação, sincronização com API e fallback local.
+- `server.js`: servidor Express e API.
+- `database.js`: acesso ao banco SQLite.
+- `data/estetica.db`: arquivo do banco de dados (criado automaticamente).
 
 ## Fluxo de uso
 
@@ -47,4 +66,4 @@ Depois acesse `http://localhost:8000`.
 
 ## Publicação
 
-A aplicação pode ser publicada em qualquer hospedagem de arquivos estáticos, como GitHub Pages, Netlify, Vercel ou servidor web próprio.
+A aplicação precisa de ambiente Node.js por usar backend e banco local SQLite.

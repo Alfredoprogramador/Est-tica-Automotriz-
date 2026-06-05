@@ -43,6 +43,10 @@
               E-mail
               <input name="email" type="email" placeholder="cliente@email.com" required />
             </label>
+            <label class="full-width">
+              Endereço
+              <input name="address" type="text" placeholder="Rua, número, bairro, cidade" required />
+            </label>
             <div class="form-actions full-width">
               <button type="submit">Salvar cliente</button>
               <button type="reset" class="secondary">Limpar</button>
@@ -102,6 +106,44 @@
             </table>
           </div>
         </article>
+
+        <article class="panel">
+          <div class="panel-header">
+            <h2>Cadastro de serviços</h2>
+          </div>
+          <form id="service-form" class="form-grid">
+            <input type="hidden" name="id" />
+            <label>
+              Nome do serviço
+              <input name="name" type="text" placeholder="Ex.: Higienização completa" required />
+            </label>
+            <label>
+              Duração (min)
+              <input name="duration" type="number" min="15" step="5" placeholder="90" required />
+            </label>
+            <label>
+              Valor padrão (R$)
+              <input name="basePrice" type="number" min="0" step="0.01" placeholder="180" required />
+            </label>
+            <div class="form-actions full-width">
+              <button type="submit">Salvar serviço</button>
+              <button type="reset" class="secondary">Limpar</button>
+            </div>
+          </form>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Serviço</th>
+                  <th>Duração</th>
+                  <th>Valor</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody id="services-table"></tbody>
+            </table>
+          </div>
+        </article>
       </section>
 
       <section class="layout two-columns">
@@ -121,7 +163,7 @@
             </label>
             <label>
               Serviço
-              <input name="serviceType" type="text" placeholder="Lavagem técnica" required />
+              <select name="serviceId" id="schedule-service" required></select>
             </label>
             <label>
               Data
@@ -205,6 +247,71 @@
                 </tr>
               </thead>
               <tbody id="orders-table"></tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-header">
+            <h2>Controle de pagamentos</h2>
+          </div>
+          <form id="payment-form" class="form-grid">
+            <input type="hidden" name="id" />
+            <label>
+              Tipo
+              <select name="sourceType" id="payment-source-type" required>
+                <option value="schedule">Agendamento</option>
+                <option value="order">Ordem de serviço</option>
+              </select>
+            </label>
+            <label>
+              Referência
+              <select name="sourceId" id="payment-source" required></select>
+            </label>
+            <label>
+              Método
+              <select name="method" required>
+                <option value="pix">PIX</option>
+                <option value="cartão">Cartão</option>
+                <option value="dinheiro">Dinheiro</option>
+                <option value="boleto">Boleto</option>
+                <option value="transferência">Transferência</option>
+              </select>
+            </label>
+            <label>
+              Valor (R$)
+              <input name="amount" type="number" min="0" step="0.01" required />
+            </label>
+            <label>
+              Data de pagamento
+              <input name="paidAt" type="date" required />
+            </label>
+            <label>
+              Status
+              <select name="status" required>
+                <option value="pendente">Pendente</option>
+                <option value="pago">Pago</option>
+                <option value="estornado">Estornado</option>
+              </select>
+            </label>
+            <div class="form-actions full-width">
+              <button type="submit">Salvar pagamento</button>
+              <button type="reset" class="secondary">Limpar</button>
+            </div>
+          </form>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Referência</th>
+                  <th>Método</th>
+                  <th>Valor</th>
+                  <th>Status</th>
+                  <th>Data</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody id="payments-table"></tbody>
             </table>
           </div>
         </article>
